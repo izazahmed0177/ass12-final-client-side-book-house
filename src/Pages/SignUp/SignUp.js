@@ -1,13 +1,18 @@
 import { data } from 'autoprefixer';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import RadioButton from '../../components/RadioButton';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 
 const SignUp = () => {
     const {createUser, updateUser}=useContext(AuthContext);
-    // const [roll,setRoll]=useState('buyers')
+    const location=useLocation();
+    const navigate=useNavigate();
+    
+
+    const from=location.state?.from?.pathname || '/login';
 
     const [changeRole,setChangeRole]=useState('buyers')
 
@@ -15,13 +20,7 @@ const SignUp = () => {
         setChangeRole(e.target.value);
       };
 
-    // const handleBuyersChange=()=>{
-    //     setRoll('buyers')
-    // }
 
-    // const handleSellerChange=()=>{
-    //     setRoll('seller')
-    // }
 
     const handaleSignUp=event=>{
         event.preventDefault();
@@ -63,6 +62,8 @@ const SignUp = () => {
             .then(res=>res.json())
             .then(data=>{
                 console.log(data)
+                toast.success('user create')
+                navigate(from,{replace:true})
             })
             .catch(err=>console.error(err))
 
@@ -129,28 +130,23 @@ const SignUp = () => {
                         <form onSubmit={handaleSignUp}>
                             <div>
                                 <lable className="text-sm font-medium leading-none text-gray-800">Name</lable>
-                                <input aria-label="enter email adress" role="input" name='name' type="text" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                <input aria-label="enter email adress" required role="input" name='name' type="text" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                             </div>
                             <div>
                                 <lable className="text-sm font-medium leading-none text-gray-800">Email</lable>
 
-                                <input aria-label="enter email adress" role="input" type="email" name='email' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                <input aria-label="enter email adress" required role="input" type="email" name='email' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                             </div>
                             <div className="mt-6  w-full">
                                 <lable className="text-sm font-medium leading-none text-gray-800">Password</lable>
                                 <div className="relative flex items-center justify-center">
 
-                                    <input aria-label="enter Password" role="input" name='password' type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                    <input aria-label="enter Password" required role="input" name='password' type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                     <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
 
                                     </div>
                                 </div>
                             </div>
-
-                            
-
-      
-
           <div >
 
             <RadioButton

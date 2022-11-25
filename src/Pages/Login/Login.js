@@ -1,8 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
+    const {signIn}=useContext(AuthContext);
     const [sidebar, setsidebar] = useState();
+
+    const handaleLogin=event=>{
+        event.preventDefault();
+        const form=event.target;
+        const email=form.email.value;
+        const password=form.password.value;
+        console.log(email,password)
+
+        signIn(email,password)
+        .then(reault=>{
+            const user=reault.user;
+            console.log(user)
+        })
+        .catch(err=>console.log(err))
+    }
     return (
         <div>
             <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -44,22 +61,22 @@ const Login = () => {
                             <p className="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
                             <hr className="w-full bg-gray-400  " />
                         </div>
-                        <form>
+                        <form onSubmit={handaleLogin}>
                             <div>
                                 <lable className="text-sm font-medium leading-none text-gray-800">Email</lable>
-                                <input aria-label="enter email adress" role="input" type="email" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                <input aria-label="enter email adress" name='email' required role="input" type="email" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                             </div>
                             <div className="mt-6  w-full">
                                 <lable className="text-sm font-medium leading-none text-gray-800">Password</lable>
                                 <div className="relative flex items-center justify-center">
-                                    <input aria-label="enter Password" role="input" type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                    <input aria-label="enter Password" name='password' required role="input" type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                     <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
 
                                     </div>
                                 </div>
                             </div>
                             <div className="mt-8">
-                                <button role="button" aria-label="create my account" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+                                <button type='submit' role="button" aria-label="create my account" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
                                     Log In
                                 </button>
                             </div>
