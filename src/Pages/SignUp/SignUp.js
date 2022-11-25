@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import RadioButton from '../../components/RadioButton';
+
 
 const SignUp = () => {
+    const [roll,setRoll]=useState('buyers')
+
+    const [changeRoll,setChangeRoll]=useState('buyers')
+
+    const radioChangeHandler = (e) => {
+        setChangeRoll(e.target.value);
+      };
+
+    const handleBuyersChange=()=>{
+        setRoll('buyers')
+    }
+
+    const handleSellerChange=()=>{
+        setRoll('seller')
+    }
+
+    const handaleSignUp=event=>{
+        event.preventDefault();
+        const form=event.target;
+        const email=form.email.value;
+        const password=form.password.value;
+        const name=form.name.value;
+        // const rollall=roll
+        // const buyers=form.buyers.value;
+        // const seller=form.seller.value;
+
+        const roll=changeRoll
+
+
+        console.log(email,password,name,roll)
+        
+    
+    }
     return (
         <div>
             <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -31,64 +66,72 @@ const SignUp = () => {
                        
                       
                         
-                        <form>
+                        <form onSubmit={handaleSignUp}>
                             <div>
                                 <lable className="text-sm font-medium leading-none text-gray-800">Name</lable>
-                                <input aria-label="enter email adress" role="input" type="text" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                <input aria-label="enter email adress" role="input" name='name' type="text" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                             </div>
                             <div>
                                 <lable className="text-sm font-medium leading-none text-gray-800">Email</lable>
-                                <input aria-label="enter email adress" role="input" type="email" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+
+                                <input aria-label="enter email adress" role="input" type="email" name='email' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                             </div>
                             <div className="mt-6  w-full">
                                 <lable className="text-sm font-medium leading-none text-gray-800">Password</lable>
                                 <div className="relative flex items-center justify-center">
-                                    <input aria-label="enter Password" role="input" type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+
+                                    <input aria-label="enter Password" role="input" name='password' type="password" className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                     <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
 
                                     </div>
                                 </div>
                             </div>
 
-                            {/*  */}
-
-
                             
 
-        
+      
 
-          <div class="w-full">
-            <label class="cursor-pointer inline-flex items-baseline">
-              <input
-                type="radio"
-                aria-label="Lorem ipsum"
-                class="xt-check xt-radio rounded-full bg-gray-200 border border-transparent transition-all checked:bg-primary-500"
-                name="radio-usage" />
-              <span class="ml-4"
-                ><strong>Lorem ipsum</strong> </span>
-              
-            </label>
-          </div>
+          <div >
 
-          <div class="w-full">
-            <label class="cursor-pointer inline-flex items-baseline">
-              <input
-                type="radio"
-                aria-label="Lorem ipsum"
-                class="xt-check xt-radio rounded-full bg-gray-200 border border-transparent transition-all checked:bg-primary-500"
-                name="radio-usage" />
-              <span class="ml-4"
-                ><strong>Lorem ipsum</strong> </span>
-              
-            </label>
-          </div>
+            <RadioButton
+              id='1'
+              //  value={roll === 'buyers'}
+              value='buyers'
+              //  onChange={handleBuyersChange}
+      
+               changed={radioChangeHandler}
+              //  onChange={radioChangeHandler}
+               isSelected={changeRoll=== "buyers"}
+              type="radio" name="buyers"
+              label="Buyer"
+            ></RadioButton>
+            
+            <RadioButton
+             id='2'
+             value='seller'
+             changed={radioChangeHandler}
+             isSelected={changeRoll=== "seller"}
+              type="radio" name="seller" 
+              label="Seller"
+            ></RadioButton>
+
+            <RadioButton
+             id='3'
+             value='admin'
+             changed={radioChangeHandler}
+             isSelected={changeRoll=== "admin"}
+              type="radio" name="admin" 
+              label="Admin"
+            ></RadioButton>
+
+      </div>
 
 
 
 
                             {/*  */}
                             <div className="mt-8">
-                                <button role="button" aria-label="create my account" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+                                <button role="button" type='submit' aria-label="create my account" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
                                     Sign Up
                                 </button>
                             </div>
