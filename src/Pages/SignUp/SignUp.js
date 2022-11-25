@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import { data } from 'autoprefixer';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RadioButton from '../../components/RadioButton';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 
 const SignUp = () => {
-    const [roll,setRoll]=useState('buyers')
+    const {createUser, updateUser}=useContext(AuthContext);
+    // const [roll,setRoll]=useState('buyers')
 
-    const [changeRoll,setChangeRoll]=useState('buyers')
+    const [changeRole,setChangeRole]=useState('buyers')
 
     const radioChangeHandler = (e) => {
-        setChangeRoll(e.target.value);
+        setChangeRole(e.target.value);
       };
 
-    const handleBuyersChange=()=>{
-        setRoll('buyers')
-    }
+    // const handleBuyersChange=()=>{
+    //     setRoll('buyers')
+    // }
 
-    const handleSellerChange=()=>{
-        setRoll('seller')
-    }
+    // const handleSellerChange=()=>{
+    //     setRoll('seller')
+    // }
 
     const handaleSignUp=event=>{
         event.preventDefault();
@@ -30,13 +33,70 @@ const SignUp = () => {
         // const buyers=form.buyers.value;
         // const seller=form.seller.value;
 
-        const roll=changeRoll
+        const role=changeRole
 
 
-        console.log(email,password,name,roll)
+        // console.log(email,password,name,role)
+        createUser(email,password)
+        .then(result=>{
+            const user=result.user;
+            console.log(user)
+            handeUpdatUserProfil(name)
+            // saveUserMongo(name,email,role);
+
+            // const userInfo={
+
+            // }
+            const userinfo={
+                name,
+                email,
+                role
+            }
+
+            fetch('http://localhost:5000/users',{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(userinfo)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data)
+            })
+            .catch(err=>console.error(err))
+
+        })
         
     
     }
+
+    const handeUpdatUserProfil=(name)=>{
+        const profile={
+            displayName:name,
+           
+        }
+        updateUser(profile)
+        .then(()=>{})
+        .catch(err=>console.error(err))
+
+    }
+
+
+
+
+
+
+    // const saveUserMongo=(name,email,role)={
+    //     const userinfo={name,email,role};
+
+    //     fetch('http://localhost:5000/users',{
+
+    //     })
+
+    // }
+
+
     return (
         <div>
             <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -101,7 +161,7 @@ const SignUp = () => {
       
                changed={radioChangeHandler}
               //  onChange={radioChangeHandler}
-               isSelected={changeRoll=== "buyers"}
+               isSelected={changeRole=== "buyers"}
               type="radio" name="buyers"
               label="Buyer"
             ></RadioButton>
@@ -110,7 +170,7 @@ const SignUp = () => {
              id='2'
              value='seller'
              changed={radioChangeHandler}
-             isSelected={changeRoll=== "seller"}
+             isSelected={changeRole=== "seller"}
               type="radio" name="seller" 
               label="Seller"
             ></RadioButton>
@@ -119,7 +179,7 @@ const SignUp = () => {
              id='3'
              value='admin'
              changed={radioChangeHandler}
-             isSelected={changeRoll=== "admin"}
+             isSelected={changeRole=== "admin"}
               type="radio" name="admin" 
               label="Admin"
             ></RadioButton>
