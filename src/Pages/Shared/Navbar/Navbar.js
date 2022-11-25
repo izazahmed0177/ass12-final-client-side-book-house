@@ -72,8 +72,9 @@ const Navbar = () => {
               dbUser?.role === 'admin' ?
                 <>
 
-                  <a className="mr-5 hover:text-gray-900">admin 1 Link</a>
-                  <a className="mr-5 hover:text-gray-900">admin 2 Link</a>
+                  <Link to='/dashboard/AllBuyers' className="mr-5 hover:text-gray-900">All Buyers</Link>
+                  <Link to='/dashboard/AllSellers' className="mr-5 hover:text-gray-900">All Sellers</Link>
+                  <Link to='/dashboard/ReportedItems' className="mr-5 hover:text-gray-900">Report</Link>
                 </>
                 :
                 <>
@@ -81,8 +82,8 @@ const Navbar = () => {
                     dbUser?.role === 'seller' ?
                       <>
 
-                        <a className="mr-5 hover:text-gray-900">seller 1 Link</a>
-                        <a className="mr-5 hover:text-gray-900">seller 2 Link</a>
+                        <Link to='/dashboard/AddAproduct' className="mr-5 hover:text-gray-900">Add Product</Link>
+                        <Link to='/dashboard/MyProducts' className="mr-5 hover:text-gray-900">My Products</Link>
 
                       </>
                       :
@@ -91,8 +92,8 @@ const Navbar = () => {
                         {
                           dbUser?.role === 'buyers' ?
                             <>
-                              <a className="mr-5 hover:text-gray-900">buyers 1 Link</a>
-                              <a className="mr-5 hover:text-gray-900">buyers 2 Link</a>
+                              <Link to='/dashboard/MyOrders' className="mr-5 hover:text-gray-900">My Orders</Link>
+                              
                             </>
                             :
                             <>
@@ -111,57 +112,14 @@ const Navbar = () => {
             }
 
 
+            {/* <a className="mr-5 hover:text-gray-900">Second Link</a>
+            <a className="mr-5 hover:text-gray-900">{user?.email}</a> */}
 
 
 
 
 
-
-            {/* 
-            {
-              dbUser.map((user)=>
-              <div key={user._id}>
-              {
-                user?.role =='admin' ?
-                <>
-                
-                 <a className="mr-5 hover:text-gray-900">admin 1 Link</a>
-            <a className="mr-5 hover:text-gray-900">admin 2 Link</a>
-                </>
-                :
-                <>
-                {
-                  user?.role =='seller' ?
-                  <>
-                 
-                    <a className="mr-5 hover:text-gray-900">seller 1 Link</a>
-            <a className="mr-5 hover:text-gray-900">seller 2 Link</a>
-
-                  </>
-                  :
-                  <>
-                 
-                    <a className="mr-5 hover:text-gray-900">buyers 1 Link</a>
-            <a className="mr-5 hover:text-gray-900">buyers 2 Link</a>
-
-                  </>
-                }
-
-                </>
-              }
-              </div>)
-            } */}
-
-
-
-            <a className="mr-5 hover:text-gray-900">Second Link</a>
-            <a className="mr-5 hover:text-gray-900">{user?.email}</a>
-
-
-
-
-
-            <Link to='blog' className="mr-5 hover:text-gray-900">Blog</Link>
+            <Link to='/blog' className="mr-5 hover:text-gray-900">Blog</Link>
           </nav>
 
           {

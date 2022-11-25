@@ -2,6 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
+import AllSellers from "../../Pages/Dashboard/Admin/AllSellers/AllSellers";
+import ReportedItems from "../../Pages/Dashboard/Admin/ReportedItems/ReportedItems";
+import MyOrders from "../../Pages/Dashboard/Buyers/MyOrders/MyOrders";
+import AddAproduct from "../../Pages/Dashboard/Sellers/AddAproduct/AddAproduct";
+import MyProducts from "../../Pages/Dashboard/Sellers/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
@@ -40,26 +46,37 @@ const router=createBrowserRouter([
         path:'/dashboard',
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
+            // admin route
             {
                 path:'/dashboard/AllBuyers',
+                element:<AllBuyers></AllBuyers>
             },
             {
                 path:'/dashboard/AllSellers',
+                element:<AllSellers></AllSellers>
             },
             {
                 path:'/dashboard/ReportedItems',
+                element:<ReportedItems></ReportedItems>
             },
 
+            //Buyers route
 
-            
             {
-                path:'/dashboard',
+                path:'/dashboard/MyOrders',
+                element:<MyOrders></MyOrders>
+            },
+
+            //seller route
+
+
+            {
+                path:'/dashboard/AddAproduct',
+                element:<AddAproduct></AddAproduct>
             },
             {
-                path:'/dashboard',
-            },
-            {
-                path:'/dashboard',
+                path:'/dashboard/MyProducts',
+                element:<MyProducts></MyProducts>
             },
         ]
         
