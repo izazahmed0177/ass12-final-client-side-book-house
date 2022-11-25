@@ -1,9 +1,61 @@
-import React, { useState } from 'react';
+import { format } from 'date-fns';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const AddAproduct = () => {
-    const { register, handleSubmit } = useForm();
+    const {dbUser}=useContext(AuthContext)
+    const { register, handleSubmit ,reset} = useForm();
     const [data, setData] = useState("");
+    // publishDate:new Date()
+    let date=new Date()
+    const dateFormat=format(date,'PP');
+
+
+
+    const handleAddProduct=data=>{
+
+        const product={
+            sellerName:dbUser.name,
+            sellerId:dbUser._id,
+            sellerEmail:dbUser.email,
+            bookName:data.bookName,
+            image:data.image,
+            condition:data.condition,
+            category:data.category,
+            aboutBook:data.aboutBook,
+            mobileNumber:data.mobileNumber,
+            location:data.location,
+            resalePrice:data.resalePrice,
+            originalPrice:data.originalPrice,
+            yearofUse:data.yearofUse,
+            // publishDate111:new Date(),
+            publishDate:dateFormat,
+
+        }
+
+        console.log(product)
+
+        fetch('http://localhost:5000/books',{
+            method:'POST',
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify(product)
+        })
+        .then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            toast.success(`${data.bookName} is added successfully`)
+            reset();
+            
+            
+        })
+    }
+
+
+
     return (
         <div>
             {/* <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
@@ -21,14 +73,17 @@ const AddAproduct = () => {
 
 
             <section className="p-6 bg-gray-800 text-gray-50">
-                <form novalidate="" action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+                {/* <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"> */}
+                <form onSubmit={handleSubmit(handleAddProduct)} className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
                     <div className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-900">
 
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full">
 
                                 <label for="firstname" className="text-sm">Book name</label>
-                                <input {...register("bookName")} placeholder="Book name" id="firstname" type="text" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <input {...register("bookName",{
+                                    required:"Book Name Required"
+                                })} placeholder="Book name" id="firstname" type="text" className="w-full text-black rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 " />
                             </div>
 
                             {/* <div className="col-span-full sm:col-span-3">
@@ -39,7 +94,9 @@ const AddAproduct = () => {
 
                             <div className="col-span-full">
                                 <label for="address" className="text-sm">Book Image Url</label>
-                                <input {...register("Image")} placeholder="Book Image Url" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <input {...register("image",{
+                                    required:"Book Image Url Required"
+                                })} placeholder="Book Image Url" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
 
 
@@ -65,7 +122,9 @@ const AddAproduct = () => {
 
                             <div className='col-span-full'>
                             <label className="text-sm">About Book</label>
-                                <textarea {...register("aboutBook")} placeholder="About Book" className=' w-full text-black' />
+                                <textarea {...register("aboutBook",{
+                                    required:"About Book Required"
+                                })} placeholder="About Book" className=' w-full text-black' />
                             </div>
 
 
@@ -74,7 +133,9 @@ const AddAproduct = () => {
 
                             <div className="col-span-full sm:col-span-3">
                                 <label className="text-sm">Mobile Number</label>
-                                <input {...register("mobileNumber")} placeholder="Mobile Number" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <input {...register("mobileNumber",{
+                                    required:"Mobile Number Required"
+                                })} placeholder="Mobile Number" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
 
 
@@ -84,7 +145,9 @@ const AddAproduct = () => {
 
                             <div className="col-span-full">
                                 <label for="address" className="text-sm">Location</label>
-                                <input  {...register("location")} placeholder="Location" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <input  {...register("location",{
+                                    required:"Location Required"
+                                })} placeholder="Location" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
 
 
@@ -99,19 +162,27 @@ const AddAproduct = () => {
 
 
                             <div className="col-span-full sm:col-span-2">
-                                <label for="city" className="text-sm">Resale Price</label>
-                                <input {...register("resalePrice")} placeholder="Resale Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <label  className="text-sm">Resale Price</label>
+                                <input {...register("resalePrice",{
+                                    required:true
+                                })} placeholder="Resale Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
                             <div className="col-span-full sm:col-span-2">
-                                <label for="state" className="text-sm">Original Price</label>
-                                <input {...register("originalPrice")} placeholder="Original Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <label  className="text-sm">Original Price</label>
+                                <input {...register("originalPrice",{
+                                    required:"Original Price Required"
+                                })} placeholder="Original Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
                             <div className="col-span-full sm:col-span-2">
-                                <label for="zip" className="text-sm">Year of Use</label>
-                                <input {...register("yearofUse")} placeholder="Year of Use" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
+                                <label  className="text-sm">Year of Use</label>
+                                <input {...register("yearofUse",{
+                                    required:"Year of Use Required"
+                                })} placeholder="Year of Use" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 text-gray-900" />
                             </div>
+                           
 
                             <button className="btn btn-secondary">Submit</button>
+                            {/* <p>{data}</p> */}
                         </div>
                     </div>
 
