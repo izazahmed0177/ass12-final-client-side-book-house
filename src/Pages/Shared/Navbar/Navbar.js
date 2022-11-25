@@ -1,15 +1,56 @@
-import React, { useContext } from 'react';
+import { async } from '@firebase/util';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
-  const { logOut, user } = useContext(AuthContext)
+  const { logOut, user ,loading,dbUser } = useContext(AuthContext)
 
-  const handleLogOut=()=>{
+  // const [dbUser, setDbUser] = useState([])
+
+
+  console.log(user?.email)
+  const userEmail = user?.email;
+
+
+  // const { data: dbUser = [],isLoading,refetch} = useQuery({
+  //   queryKey: ['dbUser'],
+  //   queryFn: async () => {
+  //     const res = await fetch(`http://localhost:5000/users/role/${userEmail}`);
+  //     // const res = await fetch(`http://localhost:5000/users`);
+  //     const data = await res.json();
+  //     return data;
+  //   }
+  // })
+
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/users/role/${userEmail}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       setDbUser(data)
+  //     })
+  // },[]);
+
+
+
+  // console.log(dbUser)
+
+  const handleLogOut = () => {
     logOut()
-    .then(()=>{})
-    .catch(err=>console.error(err))
+      .then(() => { 
+        // loading
+        // refetch()
+      })
+      .catch(err => console.error(err))
   }
+
+  // if (isLoading) {
+  //   return <h1>loding......</h1>
+    
+  // }
 
 
   return (
@@ -27,8 +68,94 @@ const Navbar = () => {
 
 
 
+            {
+              dbUser?.role === 'admin' ?
+                <>
+
+                  <a className="mr-5 hover:text-gray-900">admin 1 Link</a>
+                  <a className="mr-5 hover:text-gray-900">admin 2 Link</a>
+                </>
+                :
+                <>
+                  {
+                    dbUser?.role === 'seller' ?
+                      <>
+
+                        <a className="mr-5 hover:text-gray-900">seller 1 Link</a>
+                        <a className="mr-5 hover:text-gray-900">seller 2 Link</a>
+
+                      </>
+                      :
+                      <>
+
+                        {
+                          dbUser?.role === 'buyers' ?
+                            <>
+                              <a className="mr-5 hover:text-gray-900">buyers 1 Link</a>
+                              <a className="mr-5 hover:text-gray-900">buyers 2 Link</a>
+                            </>
+                            :
+                            <>
+
+                            </>
+                        }
+
+
+
+                      </>
+                  }
+
+                </>
+
+
+            }
+
+
+
+
+
+
+
+
+            {/* 
+            {
+              dbUser.map((user)=>
+              <div key={user._id}>
+              {
+                user?.role =='admin' ?
+                <>
+                
+                 <a className="mr-5 hover:text-gray-900">admin 1 Link</a>
+            <a className="mr-5 hover:text-gray-900">admin 2 Link</a>
+                </>
+                :
+                <>
+                {
+                  user?.role =='seller' ?
+                  <>
+                 
+                    <a className="mr-5 hover:text-gray-900">seller 1 Link</a>
+            <a className="mr-5 hover:text-gray-900">seller 2 Link</a>
+
+                  </>
+                  :
+                  <>
+                 
+                    <a className="mr-5 hover:text-gray-900">buyers 1 Link</a>
+            <a className="mr-5 hover:text-gray-900">buyers 2 Link</a>
+
+                  </>
+                }
+
+                </>
+              }
+              </div>)
+            } */}
+
+
+
             <a className="mr-5 hover:text-gray-900">Second Link</a>
-            <a className="mr-5 hover:text-gray-900">Third Link</a>
+            <a className="mr-5 hover:text-gray-900">{user?.email}</a>
 
 
 
