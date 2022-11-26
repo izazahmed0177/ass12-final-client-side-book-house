@@ -45,15 +45,15 @@ const AllSellers = () => {
                                                 <p>{i+1}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>Microsoft Corporation</p>
+                                                <p>{allSeller._id}</p>
                                             </td>
                                             <td className="p-3">
-                                                <p>14 Jan 2022</p>
-                                                <p className="dark:text-gray-400">Friday</p>
+                                                <p>{allSeller.name}</p>
+                                                
                                             </td>
                                             <td className="p-3">
-                                                <p>01 Feb 2022</p>
-                                                <p className="dark:text-gray-400">Tuesday</p>
+                                                <p>{allSeller.email}</p>
+                                               
                                             </td>
                                             <td className="p-3 text-right">
                                                 <button className="btn btn-primary">Add</button>

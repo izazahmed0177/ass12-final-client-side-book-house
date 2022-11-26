@@ -68,7 +68,8 @@ const MyProducts = () => {
                             <tbody>
 
                                 {
-                                    sellerBooks.map(sellerBook => <MyItemProducts key={sellerBook._id} sellerBook={sellerBook}></MyItemProducts>)
+                                    sellerBooks &&
+                                    sellerBooks?.map(sellerBook => <MyItemProducts key={sellerBook._id} sellerBook={sellerBook}></MyItemProducts>)
 
 
                                 }

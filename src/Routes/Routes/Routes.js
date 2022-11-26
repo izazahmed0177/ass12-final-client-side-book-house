@@ -49,7 +49,8 @@ const router=createBrowserRouter([
             // admin route
             {
                 path:'/dashboard/AllBuyers',
-                element:<AllBuyers></AllBuyers>
+                element:<AllBuyers></AllBuyers>,
+                loader:()=>fetch('http://localhost:5000/allBuyers')
             },
             {
                 path:'/dashboard/AllSellers',

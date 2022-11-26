@@ -49,7 +49,8 @@ const SignUp = () => {
             const userinfo={
                 name,
                 email,
-                role
+                role,
+                verified:"no",
             }
 
             fetch('http://localhost:5000/users',{
