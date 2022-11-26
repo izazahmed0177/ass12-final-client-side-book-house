@@ -30,6 +30,8 @@ const AddAproduct = () => {
             resalePrice:data.resalePrice,
             originalPrice:data.originalPrice,
             yearofUse:data.yearofUse,
+            salesStatus:"available",
+            advertised:"no",
             // publishDate111:new Date(),
             publishDate:dateFormat,
 

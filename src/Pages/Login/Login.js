@@ -1,10 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const {signIn}=useContext(AuthContext);
     const [sidebar, setsidebar] = useState();
+
+    const location=useLocation();
+    const navigate=useNavigate();
+
+    const from=location.state?.from?.pathname || '/';
 
     const handaleLogin=event=>{
         event.preventDefault();
@@ -17,6 +23,8 @@ const Login = () => {
         .then(reault=>{
             const user=reault.user;
             console.log(user)
+            toast.success("Login successfully")
+            navigate(from,{replace:true})
         })
         .catch(err=>console.log(err))
     }

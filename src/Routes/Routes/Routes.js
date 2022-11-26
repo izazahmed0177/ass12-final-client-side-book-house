@@ -53,7 +53,8 @@ const router=createBrowserRouter([
             },
             {
                 path:'/dashboard/AllSellers',
-                element:<AllSellers></AllSellers>
+                element:<AllSellers></AllSellers>,
+                loader:()=>fetch('http://localhost:5000/allSeller')
             },
             {
                 path:'/dashboard/ReportedItems',
