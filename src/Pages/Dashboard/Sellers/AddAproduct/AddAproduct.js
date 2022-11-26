@@ -118,6 +118,7 @@ const AddAproduct = () => {
                                 <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
                                 <option value="Detective and Mystery">Detective and Mystery</option>
                                 <option value="Fantasy">Fantasy</option>
+                                <option value="Historical Fiction">Historical Fiction</option>
                             </select>
 
 

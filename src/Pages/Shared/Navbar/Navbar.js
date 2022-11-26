@@ -82,8 +82,8 @@ const Navbar = () => {
                     dbUser?.role === 'seller' ?
                       <>
 
-                        <Link to='/dashboard/AddAproduct' className="mr-5 hover:text-gray-900">Add Product</Link>
-                        <Link to='/dashboard/MyProducts' className="mr-5 hover:text-gray-900">My Products</Link>
+                        <Link to='/dashboard/AddAproduct' className="mr-5 hover:text-gray-900">Add Book</Link>
+                        <Link to='/dashboard/MyProducts' className="mr-5 hover:text-gray-900">My Books</Link>
 
                       </>
                       :
