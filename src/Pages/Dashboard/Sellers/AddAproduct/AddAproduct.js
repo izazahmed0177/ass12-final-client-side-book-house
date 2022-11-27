@@ -1,20 +1,51 @@
 import { format } from 'date-fns';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const AddAproduct = () => {
     const {dbUser}=useContext(AuthContext)
-    const { register, handleSubmit ,reset} = useForm();
+    const { register, handleSubmit ,reset,} = useForm();
     const [data, setData] = useState("");
     // publishDate:new Date()
     let date=new Date()
     const dateFormat=format(date,'PP');
 
+    const [bookCategorys, setBookCategory]=useState([])
+    const [categorydb, setCategory]=useState([])
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/category')
+        .then(res=>res.json())
+        .then(data=>setBookCategory(data))
+    },[])
+
+    
+
 
 
     const handleAddProduct=data=>{
+
+        console.log(data.category)
+
+      
+
+
+        fetch(`http://localhost:5000/category/${data.category}`)
+        .then(res=>res.json())
+        .then(data=>setCategory(data))
+        console.log(categorydb)
+        console.log(categorydb[0].name)
+
+        const categoryName=categorydb[0].name;
+
+
+
+
+
+   
+   
 
         const product={
             sellerName:dbUser.name,
@@ -23,7 +54,12 @@ const AddAproduct = () => {
             bookName:data.bookName,
             image:data.image,
             condition:data.condition,
-            category:data.category,
+
+           
+
+            categoryId:data.category,
+            categoryName,
+           
             aboutBook:data.aboutBook,
             mobileNumber:data.mobileNumber,
             location:data.location,
@@ -60,18 +96,7 @@ const AddAproduct = () => {
 
     return (
         <div>
-            {/* <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
-               
-                <input {...register("firstName")} placeholder="First name" />
-                <select {...register("category", { required: true })}>
-                    <option value="">Select...</option>
-                    <option value="A">Option A</option>
-                    <option value="B">Option B</option>
-                </select>
-                <textarea {...register("aboutYou")} placeholder="About you" />
-                <p>{data}</p>
-                <input type="submit" />
-            </form> */}
+           
 
 
             <section className="p-6 bg-gray-800 text-gray-50">
@@ -87,11 +112,6 @@ const AddAproduct = () => {
                                     required:"Book Name Required"
                                 })} placeholder="Book name" id="firstname" type="text" className="w-full text-black rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 border-gray-700 " />
                             </div>
-
-                            {/* <div className="col-span-full sm:col-span-3">
-                                <label for="lastname" className="text-sm">Book Price</label>
-                                <input {...register("price")} placeholder="Book Price" id="lastname" type="text" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700 dark:text-gray-900" />
-                            </div> */}
 
 
                             <div className="col-span-full">
@@ -111,15 +131,23 @@ const AddAproduct = () => {
                                 <option value="Fair">Fair</option>
                             </select>
 
-                            <select {...register("category", { required: true })} className='col-span-full text-black'>
-                                <option value="">Book Category...</option>
-                                <option value="Action and Adventure">Action and Adventure</option>
-                                <option value="Classics">Classics</option>
-                                <option value="Comic Book or Graphic Novel">Comic Book or Graphic Novel</option>
-                                <option value="Detective and Mystery">Detective and Mystery</option>
-                                <option value="Fantasy">Fantasy</option>
-                                <option value="Historical Fiction">Historical Fiction</option>
+                         
+                           
+                                  <label for="address" className="text-sm">Book Category</label>
+                                <select {...register("category", { required: true })} className='col-span-full text-black'>
+
+
+                                {
+                                    bookCategorys?.map(bookCategory=> <option key={bookCategory._id}   value={
+                                      bookCategory._id
+                                      
+
+                                    }>{bookCategory.name}</option>)
+                                }
+                               
                             </select>
+
+                            
 
 
 
