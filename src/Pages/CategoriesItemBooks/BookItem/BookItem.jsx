@@ -1,10 +1,20 @@
 import React from 'react';
 
-const BookItem = () => {
+const BookItem = ({categoriesAllBook}) => {
+    const {_id,sellerName,sellerEmail,bookName,image,condition,categoryName,aboutBook,
+        mobileNumber,
+        location,
+        resalePrice,
+        originalPrice,
+        yearofUse,
+        salesStatus,
+        publishDate,
+    }=categoriesAllBook
     return (
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+           
                         <img
-                            src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                            src={image}
                             className="object-cover w-full h-64"
                             alt=""
                         />
@@ -16,9 +26,9 @@ const BookItem = () => {
                                     aria-label="Category"
                                     title="traveling"
                                 >
-                                    traveling
+                                    Publish
                                 </a>
-                                <span className="text-gray-600">— 28 Dec 2020</span>
+                                <span className="text-gray-600">— {publishDate}</span>
                             </p>
                             <a
                                 href="/"
@@ -26,20 +36,55 @@ const BookItem = () => {
                                 title="Visit the East"
                                 className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
                             >
-                                Visit the East
+                               {bookName}
                             </a>
                             <p className="mb-2 text-gray-700">
-                                Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                                consequuntur magni voluptatem doloremque.
+                               {/* {aboutBook} */}
+                               {aboutBook.length > 100 ? aboutBook.slice(0,100) + '...' : aboutBook}
                             </p>
-                            <a
-                                href="/"
-                                aria-label=""
-                                className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-                            >
-                                Learn more
-                            </a>
+                            <div>
+                                <h1 className='text-1xl font-bold'>Book: {salesStatus}</h1>
+                            </div>
+                            <div className='flex justify-between'>
+                                <div>
+                                <h2 className='text-1xl font-bold'>Resale Price: {resalePrice}</h2>
+                                </div>
+                                <div>
+                                <h2 className='text-1xl font-bold'>Original Price: {originalPrice}</h2>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                <h2 className='text-1xl font-bold'>Seller Name: {sellerName}</h2>  
+                                </div>
+                            </div>
+
+                            <div className='flex justify-between'>
+                                <div>
+                                
+                                <h2 className='text-1xl font-bold'>Use: {yearofUse} Years</h2>
+                                </div>
+                                <div>
+                                <h2 className='text-1xl font-bold'>Location: {location}</h2>
+                                </div>
+                            </div>
+
+
+                            <div className='text-center flex justify-center gap-2 mt-2'>
+                            <button
+                               
+                               className="btn btn-primary  inline-flex items-center md:mb-2 lg:mb-0"
+                           >
+                               Book now
+                           </button>
+
+                            </div>
+
+
+                            
+                            
                         </div>
+                       
                     </div>
     );
 };
