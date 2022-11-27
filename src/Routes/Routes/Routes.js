@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import CategoriesItemBooks from "../../Pages/CategoriesItemBooks/CategoriesItemBooks/CategoriesItemBooks";
 import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/Admin/AllSellers/AllSellers";
 import ReportedItems from "../../Pages/Dashboard/Admin/ReportedItems/ReportedItems";
@@ -39,6 +40,15 @@ const router=createBrowserRouter([
                 path:'/blog',
                 element:<Blog></Blog>
             },
+            {
+                path:'/categorybooks/:id',
+                element:<PrivateRoute><CategoriesItemBooks></CategoriesItemBooks></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/categorybooks/${params.id}`)
+            }
+
+
+
+
         ]
 
     },

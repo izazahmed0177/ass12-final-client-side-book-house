@@ -26,7 +26,7 @@ const BookCategories = () => {
             bookCategorys?.map(bookCategory => <div key={bookCategory._id} class="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg btn btn-outline btn-primary">
 
-                <Link class="flex-grow ">
+                <Link to={`/categorybooks/${bookCategory._id}`} class="flex-grow ">
                   <h1 class="text-gray-900 title-font font-medium ">{bookCategory.name}</h1>
 
                 </Link>

@@ -87,6 +87,7 @@ const AddAproduct = () => {
             console.log(result)
             toast.success(`${data.bookName} is added successfully`)
             reset();
+            setCategory(null)
             
             
         })
