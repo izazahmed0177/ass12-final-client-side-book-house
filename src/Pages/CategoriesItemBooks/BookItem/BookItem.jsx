@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookItem = ({ categoriesAllBook, setBookModals }) => {
+
+    const {dbUser}=useContext(AuthContext)
+
+
     const { _id, sellerName, sellerEmail, bookName, image, condition, categoryName, aboutBook,
         mobileNumber,
         location,

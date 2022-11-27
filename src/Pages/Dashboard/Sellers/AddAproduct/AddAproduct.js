@@ -13,7 +13,7 @@ const AddAproduct = () => {
     const dateFormat=format(date,'PP');
 
     const [bookCategorys, setBookCategory]=useState([])
-    const [categorydb, setCategory]=useState([])
+    const [categorydb, setCategory]=useState(null)
 
     useEffect(()=>{
         fetch('http://localhost:5000/category')
@@ -85,9 +85,10 @@ const AddAproduct = () => {
         .then(res=>res.json())
         .then(result=>{
             console.log(result)
+            setCategory(null)
             toast.success(`${data.bookName} is added successfully`)
             reset();
-            setCategory(null)
+           
             
             
         })
