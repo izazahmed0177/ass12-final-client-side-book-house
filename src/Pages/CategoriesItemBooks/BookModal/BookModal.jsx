@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookModal = ({ bookModals, setBookModals }) => {
     const {dbUser}=useContext(AuthContext)
+    const [show, setShow] = useState(false);
+    // const reload=()=>window.location.reload();
+    // const handleClose = () => setShow(false);
+
     const  { _id, 
         sellerName, 
         sellerEmail, 
@@ -22,6 +26,8 @@ const BookModal = ({ bookModals, setBookModals }) => {
         categoryId,
         sellerId
     } = bookModals
+
+    
 
 
 
@@ -75,6 +81,9 @@ const BookModal = ({ bookModals, setBookModals }) => {
                     categoryNameId:categoryId,
                     sellerId:sellerId,
                     userId:dbUser._id,
+                    image:image,
+                    aboutBook:aboutBook,
+                    
 
                 }
 
@@ -91,6 +100,7 @@ const BookModal = ({ bookModals, setBookModals }) => {
                         if (data.acknowledged) {
                             // setTreatment(null);
                             setBookModals([])
+                            form.reset();
                             toast.success('Booking Book confirmed');
                            
                         }
@@ -98,6 +108,7 @@ const BookModal = ({ bookModals, setBookModals }) => {
                             toast.error(data.message);
                         }
                     })
+                    .catch(err=>console.log(err))
         
 
 
@@ -105,16 +116,10 @@ const BookModal = ({ bookModals, setBookModals }) => {
 
             }
         })
+        .catch(err=>console.log(err))
        
 
     }
-
-
-
-
-
-
-
 
 
     return (
@@ -129,31 +134,35 @@ const BookModal = ({ bookModals, setBookModals }) => {
                         <label htmlFor="">User Name</label>
                         <input type="text" name='userName' disabled value={dbUser?.name} className="input w-full input-bordered " />
                         <label htmlFor="">User Email</label>
-                        <input type="text" name='userEmail' disabled value={dbUser?.email} className="input w-full input-bordered " />
+                        <input type="text" name='userEmail' required disabled value={dbUser?.email} className="input w-full input-bordered " />
                         <label htmlFor="">Seller Name</label>
-                        <input type="text" name='sellerName' disabled value={sellerName} className="input w-full input-bordered " />
+                        <input type="text" required name='sellerName' disabled value={sellerName} className="input w-full input-bordered " />
                         <label htmlFor="">Seller Email</label>
-                        <input type="text" name='sellerEmail' disabled value={sellerEmail} className="input w-full input-bordered " />
+                        <input type="text" name='sellerEmail' required disabled value={sellerEmail} className="input w-full input-bordered " />
                         <label htmlFor="">Seller Mobile</label>
-                        <input type="text" name='sellerMobile' disabled value={mobileNumber} className="input w-full input-bordered " />
+                        <input type="text" name='sellerMobile' required disabled value={mobileNumber} className="input w-full input-bordered " />
                         <label htmlFor="">Book Name</label>
-                        <input type="text" name='bookName' disabled value={bookName} className="input w-full input-bordered " />
+                        <input type="text" name='bookName' required disabled value={bookName} className="input w-full input-bordered " />
                         <label htmlFor="">Book Resale Price</label>
-                        <input type="text" name='bookResalePrice' disabled value={resalePrice} className="input w-full input-bordered " />
+                        <input type="text" name='bookResalePrice' required disabled value={resalePrice} className="input w-full input-bordered " />
                         <label htmlFor="">Seller Location</label>
-                        <input type="text" name='sellerLocation' disabled value={location} className="input w-full input-bordered " />
+                        <input type="text" name='sellerLocation' required disabled value={location} className="input w-full input-bordered " />
 
 
                         
                         
                         <label htmlFor="">User Phone Number</label>
-                        <input name="userPhoneNumber" type="text" placeholder="User Phone Number" className="input w-full input-bordered" />
+                        <input name="userPhoneNumber" required type="text" placeholder="User Phone Number" className="input w-full input-bordered" />
                         <label htmlFor="">Meeting location</label>
-                        <input name="meetingLocation" type="text" placeholder="Meeting Location" className="input w-full input-bordered" />
+                        <input name="meetingLocation" required type="text" placeholder="Meeting Location" className="input w-full input-bordered" />
                         <label htmlFor="">Lastly User Price</label>
-                        <input name="lastlyUserPrice" type="text" placeholder="Lastly User Price" className="input w-full input-bordered" />
+                        <input name="lastlyUserPrice" required type="text" placeholder="Lastly User Price" className="input w-full input-bordered" />
                         <br />
-                        <input className='btn btn-primary w-full' type="submit" value="Submit" />
+                       
+
+                        <input  className='btn btn-primary w-full' type="submit" value="Submit" />
+                       
+                       
                     </form>
                 </div>
             </div>

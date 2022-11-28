@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookItem from '../BookItem/BookItem';
 import BookModal from '../BookModal/BookModal';
@@ -6,6 +6,10 @@ import BookModal from '../BookModal/BookModal';
 const CategoriesItemBooks = () => {
     const categoriesAllBooks = useLoaderData();
     const [bookModals, setBookModals] = useState([]);
+    const [showModal, setShowModal] = React.useState(false);
+    useEffect(()=>{
+
+    },[bookModals])
     return (
         <div>
             
@@ -16,6 +20,7 @@ const CategoriesItemBooks = () => {
                     categoriesAllBooks?.map(categoriesAllBook=><BookItem key={categoriesAllBook._id}
                         categoriesAllBook={categoriesAllBook}
                         setBookModals={setBookModals}
+                        setShowModal={setShowModal}
                     ></BookItem>)
 
                    }

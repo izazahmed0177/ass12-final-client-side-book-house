@@ -81,7 +81,7 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                         <>
                             <div className='text-center flex justify-center gap-2 mt-2'>
                                 <label
-                                    // disabled={slots.length === 0}
+                                   
                                     htmlFor="book-modal"
                                     className="btn btn-primary text-white inline-flex items-center md:mb-2 lg:mb-0"
                                     onClick={() => setBookModals(categoriesAllBook)}
@@ -92,7 +92,7 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                         <>
                             <div className='text-center flex justify-center gap-2 mt-2' disabled>
                                 <label
-                                    // disabled={slots.length === 0}
+                                   
                                     
                                     className="btn text-white inline-flex items-center md:mb-2 lg:mb-0"
                                     
@@ -101,19 +101,6 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                         </>
 
                 }
-
-
-                {/* <div className='text-center flex justify-center gap-2 mt-2'>
-                    <label
-                        // disabled={slots.length === 0}
-                        htmlFor="book-modal"
-                        className="btn btn-primary text-white inline-flex items-center md:mb-2 lg:mb-0"
-                        onClick={() => setBookModals(categoriesAllBook)}
-                    >Book now</label>
-                </div> */}
-
-
-
 
             </div>
 
