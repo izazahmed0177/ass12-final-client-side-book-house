@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookModal = ({ bookModals, setBookModals }) => {
@@ -7,6 +8,10 @@ const BookModal = ({ bookModals, setBookModals }) => {
     const [show, setShow] = useState(false);
     // const reload=()=>window.location.reload();
     // const handleClose = () => setShow(false);
+
+    const locationNavi=useLocation();
+    const navigate=useNavigate();
+    const from=locationNavi.state?.from?.pathname || '/dashboard/MyOrders';
 
     const  { _id, 
         sellerName, 
@@ -102,6 +107,7 @@ const BookModal = ({ bookModals, setBookModals }) => {
                             setBookModals([])
                             form.reset();
                             toast.success('Booking Book confirmed');
+                            navigate(from,{replace:true})
                            
                         }
                         else{

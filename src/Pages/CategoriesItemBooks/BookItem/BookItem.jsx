@@ -76,7 +76,17 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                 <div>
                     <h1 className='text-1xl font-bold'> Seller Number: {mobileNumber}</h1>
                 </div>
+
                 {
+                     dbUser?.role === 'seller' ?
+                     <>
+                     <div>
+                        <h1>Only Buyers Orader Book</h1>
+                     </div>
+                     </>
+                     :
+                     <>
+                      {
                     salesStatus === 'available' ?
                         <>
                             <div className='text-center flex justify-center gap-2 mt-2'>
@@ -101,6 +111,12 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                         </>
 
                 }
+                     </>
+                }
+
+
+
+               
 
             </div>
 

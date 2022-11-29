@@ -30,20 +30,15 @@ const MyOraderCart = ({ userAllBook }) => {
                 >
                     {bookName}
                 </a>
-                {/* <p className="mb-2 text-gray-700">
-                
-                {aboutBook.length > 100 ? aboutBook.slice(0, 100) + '...' : aboutBook}
-            </p> */}
+              
                 <div>
-                    {/* <h1 className='text-1xl font-bold'>Book: {salesStatus}</h1> */}
+                 
                 </div>
                 <div className='flex justify-between'>
                     <div>
-                        {/* <h2 className='text-1xl font-bold'>Resale Price: {resalePrice}</h2> */}
+                       
                     </div>
-                    {/* <div>
-                    <h2 className='text-1xl font-bold'>Original Price: {originalPrice}</h2>
-                </div> */}
+                  
                 </div>
                 <div>
                     <div>
@@ -57,56 +52,30 @@ const MyOraderCart = ({ userAllBook }) => {
                 <div className='flex justify-between'>
                     <div>
 
-                        <h2 className='text-1xl font-bold'>User Price: {lastlyUserPrice} Years</h2>
+                        <h2 className='text-1xl font-bold'>User Price: {lastlyUserPrice} </h2>
                     </div>
-                    <div>
-                        {/* <h2 className='text-1xl font-bold'>Location: {location}</h2> */}
-                    </div>
+                  
                 </div>
                 <div>
-                    {/* <h1 className='text-1xl font-bold'> Seller Number: {mobileNumber}</h1> */}
+                   
                 </div>
-                {/* {
-                salesStatus === 'available' ?
-                    <>
-                        <div className='text-center flex justify-center gap-2 mt-2'>
-                            <label
-                               
-                                htmlFor="book-modal"
-                                className="btn btn-primary text-white inline-flex items-center md:mb-2 lg:mb-0"
-                                // onClick={() => setBookModals(categoriesAllBook)}
-                            >Book now</label>
-                        </div>
-                    </>
-                    :
-                    <>
-                        <div className='text-center flex justify-center gap-2 mt-2' disabled>
-                            <label
-                               
-                                
-                                className="btn text-white inline-flex items-center md:mb-2 lg:mb-0"
-                                
-                            >Book now</label>
-                        </div>
-                    </>
+                
 
-            } */}
-
-                <div className='text-center flex justify-center gap-2 mt-2 w-full'>
-                    <label
+                <div className='text-center w-full flex justify-center gap-2 mt-2'>
+                    <button
 
                         
-                        className="btn btn-primary text-white inline-flex items-center md:mb-2 lg:mb-0"
+                        className="btn btn-primary w-full text-white inline-flex items-center md:mb-2 lg:mb-0"
                     // onClick={() => setBookModals(categoriesAllBook)}
-                    >Reported Book</label>
+                    >Reported Book</button>
                 </div>
-                <div className='text-center flex justify-center gap-2 mt-2'>
-                    <label
+                <div className='text-center w-full flex justify-center gap-2 mt-2'>
+                    <button
 
                      
-                        className="btn btn-primary text-white inline-flex items-center md:mb-2 lg:mb-0"
+                        className="btn btn-primary w-full text-white inline-flex items-center md:mb-2 lg:mb-0"
                     // onClick={() => setBookModals(categoriesAllBook)}
-                    >Pay now</label>
+                    >Pay now</button>
                 </div>
 
             </div>
