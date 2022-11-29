@@ -33,14 +33,6 @@ const CategoriesItemBooks = () => {
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
         </div>
     );
 };

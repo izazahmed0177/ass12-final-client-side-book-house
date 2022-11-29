@@ -14,7 +14,7 @@ const MyProducts = () => {
     // },[sellerBooks])
 
 
-    const { data: sellerBooks, isLoading } = useQuery({
+    const { data: sellerBooks, isLoading ,refetch} = useQuery({
         queryKey: ['sellerBooks'],
         queryFn: async () => {
             try {
@@ -69,36 +69,10 @@ const MyProducts = () => {
 
                                 {
                                     sellerBooks &&
-                                    sellerBooks?.map(sellerBook => <MyItemProducts key={sellerBook._id} sellerBook={sellerBook}></MyItemProducts>)
+                                    sellerBooks?.map(sellerBook => <MyItemProducts key={sellerBook._id} sellerBook={sellerBook} refetch={refetch} ></MyItemProducts>)
 
 
                                 }
-
-                                {/* <tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-
-					<td className="p-3">
-						<p>97412378923</p>
-					</td>
-					<td className="p-3">
-						<p>Microsoft Corporation</p>
-					</td>
-					<td className="p-3">
-						<p>14 Jan 2022</p>
-						<p className="dark:text-gray-400">Friday</p>
-					</td>
-					<td className="p-3">
-						<p>01 Feb 2022</p>
-						<p className="dark:text-gray-400">Tuesday</p>
-					</td>
-					<td className="p-3 text-right">
-						<button className="btn btn-primary">Add</button>
-					</td>
-					<td className="p-3 text-right">
-						<span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-							<button className="btn btn-secondary">Delete</button>
-						</span>
-					</td>
-				</tr> */}
 
                             </tbody>
                         </table>

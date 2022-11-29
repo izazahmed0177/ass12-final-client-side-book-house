@@ -1,8 +1,63 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 
 const AllSellers = () => {
     const allSellers = useLoaderData();
+
+
+    const handleDeleteUser = allseller => {
+
+        const proceed = window.confirm('Are you sure,you want to cancel this User')
+        if (proceed) {
+            fetch(`http://localhost:5000/user/${allseller._id}`, {
+                method: 'DELETE',
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+
+                        toast.success(`Seller ${allseller.name} deleted successfully`)
+                        // const remaining=deletingUser.filter(buyers=>buyers._id !==allBuyer._id);
+                        // setDeletingUser(remaining)
+
+                    }
+                })
+
+        }
+    }
+
+    const handleUpdateUser = allSeller => {
+        const proceed = window.confirm('Are you sure,you want to Update this User')
+
+        if (proceed) {
+
+            fetch(`http://localhost:5000/user/verified/${allSeller._id}`, {
+                method: 'PUT',
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount > 0) {
+                        console.log(data)
+                        toast.success(`This ${allSeller.name}  is Verified`)
+
+                    }
+                })
+                .catch(err => console.log(err))
+
+        }
+
+    }
+
+
+
+
     return (
         <div>
             {/* <h1>My Products</h1>
@@ -42,25 +97,42 @@ const AllSellers = () => {
                                         <tr key={allSeller._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
 
                                             <td className="p-3">
-                                                <p>{i+1}</p>
+                                                <p>{i + 1}</p>
                                             </td>
                                             <td className="p-3">
                                                 <p>{allSeller._id}</p>
                                             </td>
                                             <td className="p-3">
                                                 <p>{allSeller.name}</p>
-                                                
+
                                             </td>
                                             <td className="p-3">
                                                 <p>{allSeller.email}</p>
-                                               
+
                                             </td>
                                             <td className="p-3 text-right">
-                                                <button className="btn btn-primary">Add</button>
+
+                                                {
+                                                    allSeller?.verified === 'no' ?
+                                                        <>
+                                                            <button onClick={() => handleUpdateUser(allSeller)} className="btn btn-primary">{allSeller.verified}</button>
+
+
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <button className="btn">{allSeller.verified}</button>
+
+                                                        </>
+                                                }
+
+
+
+                                                {/* <button onClick={() => handleUpdateUser(allSeller)} className="btn btn-primary">{allSeller.verified}</button> */}
                                             </td>
                                             <td className="p-3 text-right">
                                                 <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-                                                    <button className="btn btn-secondary">Delete</button>
+                                                    <button onClick={() => handleDeleteUser(allSeller)} className="btn btn-secondary">Delete</button>
                                                 </span>
                                             </td>
                                         </tr>

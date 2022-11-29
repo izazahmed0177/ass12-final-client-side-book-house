@@ -1,7 +1,34 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
-const MyItemProducts = ({sellerBook}) => {
-    const {_id,bookName,category,resalePrice,salesStatus,advertised}=sellerBook;
+const MyItemProducts = ({sellerBook,refetch}) => {
+    const {_id,bookName,categoryName,resalePrice,salesStatus,advertised}=sellerBook;
+
+
+    const handleDeleteUser = sellerBook => {
+
+        const proceed = window.confirm('Are you sure,you want to cancel this User')
+        if (proceed) {
+            fetch(`http://localhost:5000/books/${sellerBook._id}`, {
+                method: 'DELETE',
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+
+                        toast.success(`Theis ${sellerBook.bookName} deleted successfully`)
+                        refetch()
+                        // const remaining=deletingUser.filter(buyers=>buyers._id !==allBuyer._id);
+                        // setDeletingUser(remaining)
+
+                    }
+                })
+
+        }
+    }
     return (
         <tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
 
@@ -10,7 +37,7 @@ const MyItemProducts = ({sellerBook}) => {
             <p>{bookName}</p>
         </td>
         <td className="p-3">
-            <p>{category}</p>
+            <p>{categoryName}</p>
         </td>
         <td className="p-3">
             <p>{resalePrice}</p>
@@ -21,11 +48,25 @@ const MyItemProducts = ({sellerBook}) => {
             
         </td>
         <td className="p-3 text-right">
-            <button className="btn btn-primary">Add</button>
+            {
+                salesStatus === 'available' ?
+                <>
+                 <button className="btn btn-primary">{advertised}</button>
+                
+                </>
+                :
+                <>
+                 <h1 className="">Item Booked</h1>
+                </>
+
+            }
+
+
+           
         </td>
         <td className="p-3 text-right">
             <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-900">
-                <button className="btn btn-secondary">Delete</button>
+                <button onClick={() => handleDeleteUser(sellerBook)} className="btn btn-secondary">Delete</button>
             </span>
         </td>
     </tr>
