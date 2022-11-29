@@ -4,6 +4,32 @@ import { toast } from 'react-hot-toast';
 const MyItemProducts = ({sellerBook,refetch}) => {
     const {_id,bookName,categoryName,resalePrice,salesStatus,advertised}=sellerBook;
 
+    const handleUpdateBook = sellerBoook => {
+        const proceed = window.confirm('Are you sure,you want to Advertised this Book')
+
+        if (proceed) {
+
+            fetch(`http://localhost:5000/book/advertised/${sellerBook._id}`, {
+                method: 'PUT',
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount > 0) {
+                        console.log(data)
+                        toast.success(`This ${sellerBook.bookName}  is Advertised`)
+                        refetch();
+
+                    }
+                })
+                .catch(err => console.log(err))
+
+        }
+
+    }
+
 
     const handleDeleteUser = sellerBook => {
 
@@ -51,7 +77,7 @@ const MyItemProducts = ({sellerBook,refetch}) => {
             {
                 salesStatus === 'available' ?
                 <>
-                 <button className="btn btn-primary">{advertised}</button>
+                 <button onClick={() => handleUpdateBook(sellerBook)}  className="btn btn-primary">{advertised}</button>
                 
                 </>
                 :
