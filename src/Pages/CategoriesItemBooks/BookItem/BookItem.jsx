@@ -147,11 +147,6 @@ const BookItem = ({ categoriesAllBook, setBookModals }) => {
                 }
                      </>
                 }
-
-
-
-               
-
             </div>
 
         </div>

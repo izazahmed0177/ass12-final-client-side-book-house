@@ -1,5 +1,5 @@
 import React from 'react';
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 const MyItemProducts = ({sellerBook,refetch}) => {
     const {_id,bookName,categoryName,resalePrice,salesStatus,advertised}=sellerBook;
@@ -45,7 +45,7 @@ const MyItemProducts = ({sellerBook,refetch}) => {
                 .then(data => {
                     if (data.deletedCount > 0) {
 
-                        toast.success(`Theis ${sellerBook.bookName} deleted successfully`)
+                        toast.success(`This ${sellerBook.bookName} deleted successfully`)
                         refetch()
                         // const remaining=deletingUser.filter(buyers=>buyers._id !==allBuyer._id);
                         // setDeletingUser(remaining)
@@ -55,6 +55,14 @@ const MyItemProducts = ({sellerBook,refetch}) => {
 
         }
     }
+
+    const handleTostBook=selerbook=>{
+        toast.success(`This ${sellerBook.bookName} Book Are Alrady Add Advertised`)
+    }
+
+
+
+
     return (
         <tr className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
 
@@ -77,7 +85,24 @@ const MyItemProducts = ({sellerBook,refetch}) => {
             {
                 salesStatus === 'available' ?
                 <>
-                 <button onClick={() => handleUpdateBook(sellerBook)}  className="btn btn-primary">{advertised}</button>
+
+                {
+                     advertised === 'no' ?
+                     <>
+                    <button onClick={() => handleUpdateBook(sellerBook)}  className="btn btn-primary">{advertised}</button>
+
+                     </>
+                     :
+                     <>
+                     <button  onClick={() => handleTostBook(sellerBook)}   className="btn">{advertised}</button>
+
+                     </>
+
+                }
+
+
+
+                 {/* <button onClick={() => handleUpdateBook(sellerBook)}  className="btn btn-primary">{advertised}</button> */}
                 
                 </>
                 :

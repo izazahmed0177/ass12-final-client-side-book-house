@@ -1,13 +1,20 @@
 
 import React, { useContext, } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
   const { logOut, user ,loading,dbUser } = useContext(AuthContext)
+  const location=useLocation();
+  const navigate=useNavigate();
+
+  const from=location.state?.from?.pathname || '/';
   const handleLogOut = () => {
     logOut()
-      .then(() => { 
+      .then((data) => { 
+        toast.success('user Log Out')
+        navigate(from,{replace:true})
         
       })
       .catch(err => console.error(err))
@@ -83,7 +90,7 @@ const Navbar = () => {
           {
             user?.uid ?
               <>
-                <button onClick={handleLogOut} className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">logOut</button>
+                <button onClick={handleLogOut} title={dbUser?.name} className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">logOut</button>
               </>
               :
               <>
