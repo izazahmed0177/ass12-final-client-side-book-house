@@ -172,14 +172,14 @@ const SignUp = () => {
               label="Seller"
             ></RadioButton>
 
-            <RadioButton
+            {/* <RadioButton
              id='3'
              value='admin'
              changed={radioChangeHandler}
              isSelected={changeRole=== "admin"}
               type="radio" name="admin" 
               label="Admin"
-            ></RadioButton>
+            ></RadioButton> */}
 
       </div>
 

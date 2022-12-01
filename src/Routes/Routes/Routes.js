@@ -11,6 +11,7 @@ import AddAproduct from "../../Pages/Dashboard/Sellers/AddAproduct/AddAproduct";
 import MyProducts from "../../Pages/Dashboard/Sellers/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+import Payment from "../../Pages/Payment/Payment";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -77,6 +78,10 @@ const router=createBrowserRouter([
             {
                 path:'/dashboard/MyOrders',
                 element:<MyOrders></MyOrders>
+            },
+            {
+                path:'/dashboard/MyOrders/payment',
+                element:<Payment></Payment>
             },
 
             //seller route

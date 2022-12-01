@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOraderCart = ({ userAllBook }) => {
     const { _id, image, bookName, sellerName, categoryName, lastlyUserPrice, sellerMobile } = userAllBook;
@@ -70,12 +71,13 @@ const MyOraderCart = ({ userAllBook }) => {
                     >Reported Book</button>
                 </div>
                 <div className='text-center w-full flex justify-center gap-2 mt-2'>
-                    <button
+                    <Link
+                    to='/dashboard/MyOrders/payment'
 
                      
                         className="btn btn-primary w-full text-white inline-flex items-center md:mb-2 lg:mb-0"
                     // onClick={() => setBookModals(categoriesAllBook)}
-                    >Pay now</button>
+                    >Pay now</Link>
                 </div>
 
             </div>
