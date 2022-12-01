@@ -9,7 +9,7 @@ const AdvertisedItems = () => {
   const [showModal, setShowModal] = React.useState(false);
 
   useEffect(()=>{
-    fetch('http://localhost:5000/book/advertised/item')
+    fetch('https://ass12-final-server-site-book-house.vercel.app/book/advertised/item')
     .then(res=>res.json())
     .then(data=>{
       setAdvertisedBooks(data)

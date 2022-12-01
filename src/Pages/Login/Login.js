@@ -68,7 +68,7 @@ const Login = () => {
                 verified:"no",
             }
 
-            fetch('http://localhost:5000/users',{
+            fetch('https://ass12-final-server-site-book-house.vercel.app/users',{
                 method:'POST',
                 headers:{
                     'content-type':'application/json'

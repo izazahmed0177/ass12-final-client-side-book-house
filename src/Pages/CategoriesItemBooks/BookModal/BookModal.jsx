@@ -55,7 +55,7 @@ const BookModal = ({ bookModals, setBookModals }) => {
 
 
 
-        fetch(`http://localhost:5000/allBook/bookmodal/${_id}`, {
+        fetch(`https://ass12-final-server-site-book-house.vercel.app/allBook/bookmodal/${_id}`, {
             method: 'PUT', 
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -92,7 +92,7 @@ const BookModal = ({ bookModals, setBookModals }) => {
 
                 }
 
-                fetch('http://localhost:5000/userbooks', {
+                fetch('https://ass12-final-server-site-book-house.vercel.app/userbooks', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

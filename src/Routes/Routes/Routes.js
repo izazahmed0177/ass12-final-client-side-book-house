@@ -44,7 +44,7 @@ const router=createBrowserRouter([
             {
                 path:'/categorybooks/:id',
                 element:<PrivateRoute><CategoriesItemBooks></CategoriesItemBooks></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/categorybooks/${params.id}`)
+                loader:({params})=>fetch(`https://ass12-final-server-site-book-house.vercel.app/categorybooks/${params.id}`)
             }
 
 
@@ -61,12 +61,12 @@ const router=createBrowserRouter([
             {
                 path:'/dashboard/AllBuyers',
                 element:<AllBuyers></AllBuyers>,
-                loader:()=>fetch('http://localhost:5000/allBuyers')
+                loader:()=>fetch('https://ass12-final-server-site-book-house.vercel.app/allBuyers')
             },
             {
                 path:'/dashboard/AllSellers',
                 element:<AllSellers></AllSellers>,
-                loader:()=>fetch('http://localhost:5000/allSeller')
+                loader:()=>fetch('https://ass12-final-server-site-book-house.vercel.app/allSeller')
             },
             {
                 path:'/dashboard/ReportedItems',

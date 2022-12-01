@@ -16,7 +16,7 @@ const AllBuyers = () => {
 
 
     const handleDeleteUser = allBuyer => {
-        fetch(`http://localhost:5000/user/${allBuyer._id}`, {
+        fetch(`https://ass12-final-server-site-book-house.vercel.app/user/${allBuyer._id}`, {
             method: 'DELETE', 
             // headers: {
             //     authorization: `bearer ${localStorage.getItem('accessToken')}`

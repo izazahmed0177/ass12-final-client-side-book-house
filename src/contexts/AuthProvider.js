@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
             console.log('dbuser observing');
             const emailuser = currentUser?.email
 
-            fetch(`http://localhost:5000/users/role/${emailuser}`)
+            fetch(`https://ass12-final-server-site-book-house.vercel.app/users/role/${emailuser}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data)

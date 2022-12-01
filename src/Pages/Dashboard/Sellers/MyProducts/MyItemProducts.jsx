@@ -9,7 +9,7 @@ const MyItemProducts = ({sellerBook,refetch}) => {
 
         if (proceed) {
 
-            fetch(`http://localhost:5000/book/advertised/${sellerBook._id}`, {
+            fetch(`https://ass12-final-server-site-book-house.vercel.app/book/advertised/${sellerBook._id}`, {
                 method: 'PUT',
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const MyItemProducts = ({sellerBook,refetch}) => {
 
         const proceed = window.confirm('Are you sure,you want to cancel this User')
         if (proceed) {
-            fetch(`http://localhost:5000/books/${sellerBook._id}`, {
+            fetch(`https://ass12-final-server-site-book-house.vercel.app/books/${sellerBook._id}`, {
                 method: 'DELETE',
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('accessToken')}`

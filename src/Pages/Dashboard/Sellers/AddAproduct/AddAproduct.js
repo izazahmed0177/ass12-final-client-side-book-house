@@ -16,7 +16,7 @@ const AddAproduct = () => {
     const [categorydb, setCategory]=useState(null)
 
     useEffect(()=>{
-        fetch('http://localhost:5000/category')
+        fetch('https://ass12-final-server-site-book-house.vercel.app/category')
         .then(res=>res.json())
         .then(data=>setBookCategory(data))
     },[])
@@ -32,7 +32,7 @@ const AddAproduct = () => {
       
 
 
-        fetch(`http://localhost:5000/category/${data.category}`)
+        fetch(`https://ass12-final-server-site-book-house.vercel.app/category/${data.category}`)
         .then(res=>res.json())
         .then(data=>setCategory(data))
         console.log(categorydb)
@@ -75,7 +75,7 @@ const AddAproduct = () => {
 
         console.log(product)
 
-        fetch('http://localhost:5000/books',{
+        fetch('https://ass12-final-server-site-book-house.vercel.app/books',{
             method:'POST',
             headers:{
                 "content-type":"application/json"

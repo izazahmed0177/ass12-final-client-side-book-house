@@ -19,7 +19,7 @@ const AdvertiseItem = ({ categoriesAllBook, setBookModals }) => {
     const [verifiedUser,setVerifiedUser]=useState({})
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/user/${sellerId}`)
+        fetch(`https://ass12-final-server-site-book-house.vercel.app/user/${sellerId}`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data)

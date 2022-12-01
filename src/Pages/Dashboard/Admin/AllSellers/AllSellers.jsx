@@ -10,7 +10,7 @@ const AllSellers = () => {
 
         const proceed = window.confirm('Are you sure,you want to cancel this User')
         if (proceed) {
-            fetch(`http://localhost:5000/user/${allseller._id}`, {
+            fetch(`https://ass12-final-server-site-book-house.vercel.app/user/${allseller._id}`, {
                 method: 'DELETE',
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const AllSellers = () => {
 
         if (proceed) {
 
-            fetch(`http://localhost:5000/user/verified/${allSeller._id}`, {
+            fetch(`https://ass12-final-server-site-book-house.vercel.app/user/verified/${allSeller._id}`, {
                 method: 'PUT',
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('accessToken')}`

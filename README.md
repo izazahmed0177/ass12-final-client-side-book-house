@@ -1,10 +1,11 @@
 
-#  
+#  Book House
+This is a book related website from here any customer can buy old books and any seller can sell his used books here this site is made for exchange through exchange.
 
 
 
 ## Live Web Side Link
-Firebase Live Hosting Link -> [Link](https://)
+Firebase Live Hosting Link -> [Link](https://book-house-71656.web.app/)
 
 
 
@@ -34,6 +35,8 @@ Tailwind Components ->
 [daisyui](https://daisyui.com/)
 
 [Tailwind Css](https://tailwindcss.com/)
+
+[Larainfo](https://larainfo.com/)
 
 ## Other Resources
 Icon -> [FlatIcon](https://www.flaticon.com/)

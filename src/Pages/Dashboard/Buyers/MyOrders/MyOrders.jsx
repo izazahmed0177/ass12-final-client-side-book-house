@@ -12,7 +12,7 @@ const MyOrders = () => {
     // const { data: userAllBooks,isLoading } = useQuery({
     //     queryKey: ['userAllBooks'],
     //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/userbooks/${dbUser?._id}`);
+    //         const res = await fetch(`https://ass12-final-server-site-book-house.vercel.app/userbooks/${dbUser?._id}`);
     //         const data = await res.json();
     //         return data
     //     }
@@ -26,7 +26,7 @@ const MyOrders = () => {
     console.log(user?.email)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/userbooksemail/${user?.email}`)
+        fetch(`https://ass12-final-server-site-book-house.vercel.app/userbooksemail/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

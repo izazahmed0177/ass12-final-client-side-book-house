@@ -8,7 +8,7 @@ const MyProducts = () => {
     // const [sellerBooks,setSellerBook]=useState([]);
 
     // useEffect(()=>{
-    //     fetch(`http://localhost:5000/seller/${dbUser._id}`)
+    //     fetch(`https://ass12-final-server-site-book-house.vercel.app/seller/${dbUser._id}`)
     //     .then(res=>res.json())
     //     .then(data=>setSellerBook(data))
     // },[sellerBooks])
@@ -18,7 +18,7 @@ const MyProducts = () => {
         queryKey: ['sellerBooks'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/seller/${dbUser._id}`)
+                const res = await fetch(`https://ass12-final-server-site-book-house.vercel.app/seller/${dbUser._id}`)
                 const data = await res.json();
                 return data;
             } catch (error) {
